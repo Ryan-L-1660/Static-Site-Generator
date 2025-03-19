@@ -12,15 +12,16 @@ class TestTextNode(unittest.TestCase):
 
     def test_repr(self):
         node = TextNode("text here", TextType.BOLD)
-        self.assertEqual(repr(node), "TextNode(text='text here', text_type=TextType.BOLD, url=None)")
+        self.assertEqual(repr(node), "TextNode(text here, bold, None)")
 
     def test_url(self):
+        print("available texttype values:", [str(t) for t in TextType])
         node = TextNode("here for text", TextType.BOLD)
-
+        self.assertEqual(node.url, None)
         #check if the url is none 
         self.assertEqual(node.url, None)
 
-        node_with_url = TextNode("here for text", TextType.LINK, "https://example.com")
+        node_with_url = TextNode("here for text", TextType.URL_LINK, "https://example.com")
         self.assertEqual(node_with_url.url, "https://example.com")
 
         self.assertNotEqual(node, node_with_url)
